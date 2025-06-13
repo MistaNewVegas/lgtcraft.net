@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LGTCraft Minecraft Server</title>
+  <!-- Bootstrap CSS -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-ENjdO4Dr2bkBIFxQpeoA6V5YGoYj2zI3zO9L+Y5nCEiw5yYQQ8hXWvP5yXkgc+r5"
+    crossorigin="anonymous"
+  >
+  <style>
+    body {
+      /* Dirt tiles: ~32 across */
+      background-image: url('images/dirt_tile.png');
+      background-repeat: repeat;
+      background-size: 3.125% 3.125%;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #fff;
+    }
+
+    .content-wrapper {
+      max-width: 50%;
+      margin: 0 auto;
+      padding: 1rem 0.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    @media (max-width: 768px) {
+      .content-wrapper {
+        max-width: 100%;
+      }
+    }
+
+    .hero {
+      position: relative;
+      width: auto;
+      overflow: hidden;
+      margin-bottom: 1vh;
+    }
+    .hero img {
+      width: auto;
+      height: 50vh;
+      object-fit: cover;
+    }
+
+    /* Copy widget */
+    .copy-input {
+      margin-bottom: 2rem;
+    }
+    .copy-input .input-group {
+      width: 100%;
+    }
+    .copy-input .form-control {
+      background-color: #2a2a2a;
+      color: #e5e5e5;
+      font-family: 'Menlo', monospace;
+      font-size: 1.5rem;
+      font-weight: 700;
+      border: none;
+      border-radius: .75rem 0 0 .75rem;
+      padding: .75rem 1rem;
+    }
+    .copy-input .btn-copy {
+      background-color: #4a4a4a;
+      color: #fff;
+      font-size: 1.5rem;
+      font-weight: 700;
+      border: none;
+      border-radius: 0 .75rem .75rem 0;
+      padding: .75rem 1.5rem;
+      white-space: nowrap;
+    }
+    .copy-input .btn-copy:hover {
+      background-color: #5c5c5c;
+    }
+
+    .instructions {
+      background-image: url('images/stone_tile.png');
+      background-repeat: repeat;
+      background-size: 5% 5%;
+      padding: 1.5rem;
+      border: 2px solid #fff;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+  <div class="content-wrapper">
+
+    <!-- Hero Image -->
+    <div class="hero">
+      <img src="images/josh.gif" alt="Server Hero">
+    </div>
+
+    <div class="copy-input">
+      <div class="input-group">
+        <input
+          type="text"
+          class="form-control text-center"
+          id="serverAddress"
+          value="play.lgtcraft.net"
+          readonly
+        >
+        <button class="btn-copy" id="copyBtn" type="button">Copy</button>
+      </div>
+    </div>
+
+    <!-- Installation Instructions -->
+    <h2 class="text-center mb-3">How to Install the "Create Astral Space Beyond" Modpack</h2>
+    <div class="instructions">
+      <ol>
+        <li>Download and install the <a href="https://www.curseforge.com/download" class="text-light">CurseForge</a> app.</li>
+        <li>Open CurseForge and select the <strong>"Minecraft"</strong> tab.</li>
+        <li>Click <strong>"Browse Modpacks"</strong> and search for <em>Create Astral Space Beyond</em>.</li>
+        <li>Select the modpack and click <strong>"Install"</strong>.</li>
+        <li>After installation, click <strong>"Play"</strong> to launch Minecraft with the modpack.</li>
+        <li>In Minecraft, go to <strong>Multiplayer &gt; Add Server</strong>, enter <code>play.lgtcraft.net</code>, then click <strong>"Done"</strong>.</li>
+        <li>Select the server and click <strong>"Join Server"</strong>!</li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- Copy Script -->
+  <script>
+    document.getElementById('copyBtn').addEventListener('click', async () => {
+      const address = document.getElementById('serverAddress').value;
+      try {
+        await navigator.clipboard.writeText(address);
+        const btn = document.getElementById('copyBtn');
+        btn.textContent = 'Copied!';
+        setTimeout(() => btn.textContent = 'Copy', 2000);
+      } catch (err) {
+        console.error('Failed to copy:', err);
+      }
+    });
+  </script>
+</body>
+</html>
